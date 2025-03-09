@@ -1,4 +1,5 @@
-﻿namespace tpmodul4_1302204032
+﻿using System;
+namespace tpmodul4_1302204032
 {
     class Program
     {
@@ -24,6 +25,28 @@
             Console.WriteLine($"{"Samoja",-16} |     {KodePos.getKodePos("Samoja")}");
 
             Console.WriteLine("\n===================================");
+
+            // Door Machine state simulation
+            DoorMachine door = new DoorMachine();
+            door.getStatusPintu();
+
+            String input = "";
+            while (input != "exit")
+            {
+                Console.WriteLine("Masukkan Perintah (bukaPintu/kunciPintu)");
+                input = Console.ReadLine();
+
+                if (Enum.TryParse(input, out kegiatan trigger))
+                {
+                    door.ubahStatePintu(trigger);
+                }
+                else if (input != "exit")
+                {
+                    Console.WriteLine("Perintah tidak valid. Coba lagi.");
+                }
+
+                Console.WriteLine("===================================");
+            }
         }
     }
 }
